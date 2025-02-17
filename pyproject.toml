@@ -18,7 +18,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
-requires-python = ">=3.8.0,<3.11.0"
+requires-python = ">=3.10.0,<3.13.0"
 # Declare any run-time dependencies that should be installed with the package.
 dependencies = [
     "numpy",
@@ -27,8 +27,8 @@ dependencies = [
 
 # Update the urls once the hosting is set up.
 [project.urls]
-"Source" = "https://github.com/uibcdf/LinDelInt/"
-"Documentation" = "https://uibcdf.org/LinDelInt"
+"Source" = "https://github.com/uibcdf/lindelint/"
+"Documentation" = "https://uibcdf.org/lindelint"
 
 [project.optional-dependencies]
 test = [

@@ -25,5 +25,5 @@ about:
   description: 'Linear Delaunay Interpolator
 
     '
-  dev_url: https://github.com/uibcdf/LinDelInt
-  doc_url: https://uibcdf.org/LinDelInt
+  dev_url: https://github.com/uibcdf/lindelint
+  doc_url: https://uibcdf.org/lindelint
