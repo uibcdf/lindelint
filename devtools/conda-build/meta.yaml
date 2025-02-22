@@ -12,6 +12,7 @@ requirements:
   - setuptools >=61.0
   - versioningit ~=2.0
   run:
+  - python
   - numpy
   - scikit-learn
 about:
