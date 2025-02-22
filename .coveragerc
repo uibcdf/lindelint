@@ -1,0 +1,8 @@
+# .coveragerc
+
+[run]
+branch = True
+source = lindelint
+
+[report]
+show_missing = True
