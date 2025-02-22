@@ -1,6 +1,5 @@
 setup:
   channels: &setup_channels
-    - uibcdf
     - conda-forge
   dependencies: &setup_dependencies
     - python
@@ -12,7 +11,6 @@ production:
   channels: &production_channels
     - *setup_channels
   dependencies: &production_dependencies
-    - *setup_dependencies
     - numpy
     - scikit-learn
 
@@ -39,6 +37,7 @@ docs:
     - myst-nb
     - tqdm
     - matplotlib
+    - jupyterlab
 
 development:
   channels:
@@ -47,16 +46,14 @@ development:
     - *production_dependencies
     - *test_dependencies
     - *docs_dependencies
-    - jupyterlab
-    - mamba
-    - ipympl
     - pyyaml
+    - mamba
 
 conda-build:
   channels:
-    - *production_channels
+    - *setup_channels
   dependencies:
+    - *setup_dependencies
     - anaconda-client
     - conda-build
-    - boa
 

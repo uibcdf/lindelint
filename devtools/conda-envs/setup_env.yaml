@@ -1,5 +1,4 @@
 channels:
-- uibcdf
 - conda-forge
 dependencies:
 - python
