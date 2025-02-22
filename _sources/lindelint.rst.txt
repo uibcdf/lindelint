@@ -1,0 +1,21 @@
+lindelint package
+=================
+
+Submodules
+----------
+
+lindelint.interpolator module
+-----------------------------
+
+.. automodule:: lindelint.interpolator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: lindelint
+   :members:
+   :show-inheritance:
+   :undoc-members:
