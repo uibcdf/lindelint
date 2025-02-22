@@ -115,3 +115,5 @@ record.txt
 # JetBrains
 .idea
 
+# In this library
+lindelint/_version.py
