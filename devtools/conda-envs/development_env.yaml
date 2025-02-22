@@ -10,6 +10,7 @@ dependencies:
 - scikit-learn
 - pytest
 - pytest-cov
+- pytest-xdist
 - codecov
 - sphinx
 - sphinx_rtd_theme

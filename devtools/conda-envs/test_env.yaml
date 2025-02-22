@@ -10,4 +10,5 @@ dependencies:
 - scikit-learn
 - pytest
 - pytest-cov
+- pytest-xdist
 - codecov

@@ -22,8 +22,8 @@ test:
   dependencies: &test_dependencies
     - *production_dependencies
     - pytest
-    - pip
     - pytest-cov
+    - pytest-xdist
     - codecov
 
 docs:
