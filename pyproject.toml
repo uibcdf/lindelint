@@ -18,11 +18,15 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
-requires-python = ">=3.10.0,<3.13.0"
+requires-python = ">=3.11.0,<3.14.0"
 # Declare any run-time dependencies that should be installed with the package.
 dependencies = [
     "numpy",
-    "scikit-learn",
+    "scipy",
+    "pyunitwizard",
+    "smonitor",
+    "argdigest",
+    "depdigest",
 ]
 
 # Update the urls once the hosting is set up.
@@ -62,25 +66,38 @@ namespaces = false
 where = ["."]
 
 # Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+markers = [
+    "smoke: quick tests for core functionality and imports",
+    "physical: tests that verify physical correctness of the models",
+    "integration: tests for cross-library interoperability (e.g. molsysmt)",
+]
+
 [tool.setuptools.package-data]
 lindelint = [
     "py.typed"
 ]
 
 [tool.versioningit]
-default-version = "1+unknown"
+default-version = "0.1.0"
 
 [tool.versioningit.format]
-distance = "{base_version}+{distance}.{vcs}{rev}"
-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
-distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance = "{base_version}"
+dirty = "{base_version}"
+distance-dirty = "{base_version}"
 
 [tool.versioningit.vcs]
 # The method key:
 method = "git"  # <- The method name
 # Parameters to pass to the method:
 match = ["*"]
-default-tag = "1.0.0"
+default-tag = "0.1.0"
+tag-filter = "^[0-9]"
 
 [tool.versioningit.write]
 file = "lindelint/_version.py"
