@@ -29,13 +29,22 @@ class InterpolatorVectorized():
 
         if self.delaunay is not None:
             # Telemetry: Mesh Stats
-            smonitor.emit("lindelint.mesh.stats", 
-                          level="DEBUG",
-                          n_simplices=self.delaunay.nsimplex,
-                          n_points=self.n_points)
+            smonitor.emit(
+                "DEBUG",
+                "lindelint.mesh.stats",
+                source="lindelint.InterpolatorVectorized",
+                extra={
+                    "n_simplices": self.delaunay.nsimplex,
+                    "n_points": self.n_points,
+                },
+            )
             
             if self.delaunay.nsimplex == 0:
-                smonitor.emit_from_catalog("LDL-W010", n_simplices=0, source="lindelint.InterpolatorVectorized")
+                smonitor.emit_from_catalog(
+                    "LDL-W010",
+                    extra={"n_simplices": 0},
+                    source="lindelint.InterpolatorVectorized",
+                )
 
             self.points = self.delaunay.points
             if self.dim == 3:
@@ -206,7 +215,12 @@ class InterpolatorVectorized():
             done[idx] = True
             stats["corners"] = int(np.sum(not_done))
 
-        smonitor.emit("lindelint.interpolator.breakdown", level="DEBUG", **stats)
+        smonitor.emit(
+            "DEBUG",
+            "lindelint.interpolator.breakdown",
+            source="lindelint.InterpolatorVectorized",
+            extra=stats,
+        )
         return properties
 
     def _do_your_thing_2d_vectorized(self, points):

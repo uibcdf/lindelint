@@ -21,9 +21,11 @@ class Interpolator():
         # --- SMonitor Diagnostic: Dimension Check ---
         dim = points.shape[1]
         if dim not in [2, 3]:
-            smonitor.emit_from_catalog("LDL-E001", 
-                                       dimension=dim,
-                                       source="lindelint.Interpolator")
+            smonitor.emit_from_catalog(
+                "LDL-E001",
+                extra={"dimension": dim},
+                source="lindelint.Interpolator",
+            )
             raise ValueError(f"LinDelInt only works in 2D or 3D space. Current dimension: {dim}")
 
         if engine == 'auto' or engine == 'parallel':
@@ -65,10 +67,15 @@ class Interpolator():
         result = self._engine.do_your_thing(points)
         
         t_end = time.time()
-        smonitor.emit("lindelint.interpolator.do_your_thing", 
-                      level="INFO",
-                      n_points=points.shape[0],
-                      engine=self.engine_type,
-                      time=t_end - t_start)
+        smonitor.emit(
+            "INFO",
+            "lindelint.interpolator.do_your_thing",
+            source="lindelint.Interpolator",
+            extra={
+                "n_points": points.shape[0],
+                "engine": self.engine_type,
+                "time": t_end - t_start,
+            },
+        )
         
         return result
