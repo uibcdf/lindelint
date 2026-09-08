@@ -78,6 +78,25 @@ markers = [
     "integration: tests for cross-library interoperability (e.g. molsysmt)",
 ]
 
+[tool.ruff]
+target-version = "py311"
+extend-exclude = [
+    "ARGDIGEST_GUIDE.md",
+    "DEPDIGEST_GUIDE.md",
+    "GH_RUN_RECEPTOR_GUIDE.md",
+    "MOLSYSSUITE_GUIDE.md",
+    "PYUNITWIZARD_GUIDE.md",
+    "SMONITOR_GUIDE.md",
+    "docs/**/*.ipynb",
+    "sandbox",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"lindelint/__init__.py" = ["E402", "I001"]
+
 [tool.setuptools.package-data]
 lindelint = [
     "py.typed"
@@ -104,4 +123,3 @@ file = "lindelint/_version.py"
 
 #[tool.flit.external-data]
 #directory = "data"
-

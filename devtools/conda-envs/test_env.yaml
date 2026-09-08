@@ -6,4 +6,5 @@ dependencies:
 - pytest
 - pytest-cov
 - pytest-xdist
+- ruff ==0.16.5
 - codecov

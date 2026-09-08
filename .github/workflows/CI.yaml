@@ -25,12 +25,12 @@ jobs:
       fail-fast: false  # do not cancel all in-progress jobs if any job variation fails
       matrix:
         cfg:
-          - { os: ubuntu-latest, python-version: "3.10"}
           - { os: ubuntu-latest, python-version: "3.11"}
           - { os: ubuntu-latest, python-version: "3.12"}
-          - { os: macos-latest,  python-version: "3.10"}
+          - { os: ubuntu-latest, python-version: "3.13"}
           - { os: macos-latest,  python-version: "3.11"}
           - { os: macos-latest,  python-version: "3.12"}
+          - { os: macos-latest,  python-version: "3.13"}
 
     steps:
     - uses: actions/checkout@v4
@@ -89,13 +89,21 @@ jobs:
         export PYTHONPATH=$PYTHONPATH:$(pwd)
         pytest -n logical -v --cov-config=.coveragerc --cov=lindelint --cov-report=xml --junitxml=junit.xml --color=yes
 
+    - name: Run Ruff lint
+      shell: bash -l {0}
+      run: ruff check .
+
+    - name: Check Ruff formatting
+      shell: bash -l {0}
+      run: ruff format --check .
+
     - name: Check coverage
       shell: bash -l {0}
       run: |
         cat ./coverage.xml
 
     - name: Upload coverage reports to Codecov
-      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.12'
+      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.13'
       uses: codecov/codecov-action@v4
       with:
         verbose: true
@@ -105,8 +113,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Upload test results to Codecov
-      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.12' && ${{ !cancelled() }}
+      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.13' && ${{ !cancelled() }}
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-
