@@ -1,0 +1,11 @@
+schema_version: 1
+workflows:
+  - match:
+      path: .github/workflows/CI.yaml
+    profile: ci
+  - match:
+      path: .github/workflows/build_and_upload_conda_packages.yaml
+    profile: release
+  - match:
+      path: .github/workflows/sphinx_docs_to_gh_pages.yaml
+    profile: docs
