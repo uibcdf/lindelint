@@ -1,15 +1,16 @@
 import argparse
+import glob
 import os
 import re
-import glob
 import shutil
 import subprocess as sp
-from tempfile import TemporaryDirectory
 from contextlib import contextmanager
+from tempfile import TemporaryDirectory
 
 # YAML imports
 try:
     import yaml  # PyYAML
+
     loader = yaml.safe_load
 except ImportError:
     try:
@@ -17,14 +18,25 @@ except ImportError:
     except ImportError:
         try:
             from importlib import util as import_util
-            CONDA_BIN = os.path.dirname(os.environ['CONDA_EXE'])
-            ruamel_yaml_path = glob.glob(os.path.join(CONDA_BIN, '..',
-                                                      'lib', 'python*.*', 'site-packages',
-                                                      'ruamel_yaml', '__init__.py'))[0]
-            spec = import_util.spec_from_file_location('ruamel_yaml', ruamel_yaml_path)
+
+            CONDA_BIN = os.path.dirname(os.environ["CONDA_EXE"])
+            ruamel_yaml_path = glob.glob(
+                os.path.join(
+                    CONDA_BIN,
+                    "..",
+                    "lib",
+                    "python*.*",
+                    "site-packages",
+                    "ruamel_yaml",
+                    "__init__.py",
+                )
+            )[0]
+            spec = import_util.spec_from_file_location("ruamel_yaml", ruamel_yaml_path)
             yaml = spec.loader.load_module()
         except (KeyError, ImportError, IndexError):
-            raise ImportError("No YAML parser could be found. Please install PyYAML or Ruamel YAML.")
+            raise ImportError(
+                "No YAML parser could be found. Please install PyYAML or Ruamel YAML."
+            )
     loader = yaml.YAML(typ="safe").load
 
 
@@ -41,10 +53,24 @@ def temp_cd():
 
 
 # Argument parsing
-parser = argparse.ArgumentParser(description='Creates a conda environment from file for a given Python version.')
-parser.add_argument('-n', '--name', type=str, required=True, help='The name of the created Python environment')
-parser.add_argument('-p', '--python', type=str, required=True, help='The version of the created Python environment')
-parser.add_argument('conda_file', help='The file for the created Python environment')
+parser = argparse.ArgumentParser(
+    description="Creates a conda environment from file for a given Python version."
+)
+parser.add_argument(
+    "-n",
+    "--name",
+    type=str,
+    required=True,
+    help="The name of the created Python environment",
+)
+parser.add_argument(
+    "-p",
+    "--python",
+    type=str,
+    required=True,
+    help="The version of the created Python environment",
+)
+parser.add_argument("conda_file", help="The file for the created Python environment")
 
 args = parser.parse_args()
 
@@ -55,14 +81,14 @@ with open(args.conda_file, "r") as handle:
 # Ensure correct Python version in dependencies
 python_replacement_string = f"python {args.python}*"
 try:
-    for dep_index, dep_value in enumerate(yaml_script['dependencies']):
-        if re.match(r'python([ ><=*]+[0-9.*]*)?$', dep_value):
-            yaml_script['dependencies'].pop(dep_index)
+    for dep_index, dep_value in enumerate(yaml_script["dependencies"]):
+        if re.match(r"python([ ><=*]+[0-9.*]*)?$", dep_value):
+            yaml_script["dependencies"].pop(dep_index)
             break
 except (KeyError, TypeError):
-    yaml_script['dependencies'] = []
+    yaml_script["dependencies"] = []
 finally:
-    yaml_script['dependencies'].insert(0, python_replacement_string)
+    yaml_script["dependencies"].insert(0, python_replacement_string)
 
 # Find package manager (mamba preferred, conda fallback)
 mamba_path = shutil.which("mamba")
@@ -75,7 +101,9 @@ elif conda_path:
     package_manager = conda_path
     print(f"Using Conda: {conda_path}")
 else:
-    raise RuntimeError("Neither Conda nor Mamba were found. Please install one of them.")
+    raise RuntimeError(
+        "Neither Conda nor Mamba were found. Please install one of them."
+    )
 
 # Print environment details
 print(f"Creating environment '{args.name}' with Python {args.python}")
@@ -84,12 +112,14 @@ print(f"Using package manager: {package_manager}")
 # Create the environment using the preferred package manager
 with temp_cd():
     temp_file_name = "temp_script.yaml"
-    with open(temp_file_name, 'w') as f:
+    with open(temp_file_name, "w") as f:
         f.write(yaml.dump(yaml_script))
-    
+
     try:
-        sp.run([package_manager, "env", "create", "-n", args.name, "-f", temp_file_name], check=True)
+        sp.run(
+            [package_manager, "env", "create", "-n", args.name, "-f", temp_file_name],
+            check=True,
+        )
     except sp.CalledProcessError as e:
         print(f"Error creating environment: {e}")
         exit(1)
-

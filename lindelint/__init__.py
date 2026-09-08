@@ -32,8 +32,8 @@ from argdigest import arg_digest
 from depdigest import dep_digest
 
 __all__ = [
-    'pyunitwizard',
-    'Interpolator',
-    'arg_digest',
-    'dep_digest',
+    "pyunitwizard",
+    "Interpolator",
+    "arg_digest",
+    "dep_digest",
 ]

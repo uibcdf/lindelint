@@ -10,20 +10,20 @@ CODES = {
         "title": "Degenerate Triangulation",
         "user_message": "The triangulation of points might be degenerate (simplices: {n_simplices}).",
         "user_hint": "Check for overlapping points or nearly collinear/coplanar point sets.",
-    }
+    },
 }
 
 SIGNALS = {
     "lindelint.mesh.stats": {
         "description": "Geometric properties of the constructed Delaunay mesh.",
-        "level": "DEBUG"
+        "level": "DEBUG",
     },
     "lindelint.interpolator.do_your_thing": {
         "description": "Emitted during interpolation execution.",
-        "level": "INFO"
+        "level": "INFO",
     },
     "lindelint.interpolator.breakdown": {
         "description": "Breakdown of points inside vs outside the hull.",
-        "level": "DEBUG"
-    }
+        "level": "DEBUG",
+    },
 }
