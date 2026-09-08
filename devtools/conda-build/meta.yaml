@@ -14,7 +14,12 @@ requirements:
   run:
   - python
   - numpy
+  - scipy
   - scikit-learn
+  - pyunitwizard
+  - smonitor
+  - argdigest
+  - depdigest
 about:
   home: https://uibcdf.org
   license: MIT License

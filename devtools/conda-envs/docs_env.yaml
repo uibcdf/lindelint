@@ -1,8 +1,14 @@
 channels:
 - conda-forge
 dependencies:
+- python
 - numpy
+- scipy
 - scikit-learn
+- pyunitwizard
+- smonitor
+- argdigest
+- depdigest
 - sphinx
 - sphinx_rtd_theme
 - sphinxcontrib-bibtex

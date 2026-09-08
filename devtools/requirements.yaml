@@ -11,8 +11,14 @@ production:
   channels: &production_channels
     - *setup_channels
   dependencies: &production_dependencies
+    - python
     - numpy
+    - scipy
     - scikit-learn
+    - pyunitwizard
+    - smonitor
+    - argdigest
+    - depdigest
 
 test:
   channels: &test_channels
@@ -22,6 +28,7 @@ test:
     - pytest
     - pytest-cov
     - pytest-xdist
+    - numba
     - ruff ==0.16.5
     - codecov
 

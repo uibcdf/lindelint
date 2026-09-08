@@ -1,11 +1,18 @@
 channels:
 - conda-forge
 dependencies:
+- python
 - numpy
+- scipy
 - scikit-learn
+- pyunitwizard
+- smonitor
+- argdigest
+- depdigest
 - pytest
 - pytest-cov
 - pytest-xdist
+- numba
 - ruff ==0.16.5
 - codecov
 - sphinx
