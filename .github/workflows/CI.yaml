@@ -74,6 +74,12 @@ jobs:
       run: |
         python -m pip install . --no-deps
 
+    - name: Verify built wheel includes runtime packages
+      shell: bash -l {0}
+      run: |
+        python -m pip wheel --no-deps . --wheel-dir "$RUNNER_TEMP/lindelint-wheel"
+        python devtools/scripts/check_wheel.py "$RUNNER_TEMP/lindelint-wheel/"*.whl
+
     - name: Test import module
       shell: bash -l {0}
       run: |

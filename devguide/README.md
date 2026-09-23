@@ -19,3 +19,8 @@ LinDelInt is the high-performance interpolation engine for the **MolSysSuite**. 
 - [Vectorization Plan](vectorization.md): Comparison between original and vectorized engines.
 - [SMonitor Integration](smonitor_integration.md): Diagnostic codes and signals.
 - [Testing Strategy](testing_strategy.md): Tiers of verification.
+
+## Defect records
+
+- [Pending bugs](pending_bugs/README.md)
+- [Solved bugs](solved_bugs/README.md)
