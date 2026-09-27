@@ -1,9 +1,9 @@
 ---
 summary: Adopt the shared issue-backed reporting lifecycle in LinDelInt.
 issue: uibcdf/lindelint#11
-status: active
+status: resolved
 opened: 2026-09-27
-closed:
+closed: 2026-09-27
 verification: inspected
 area: [governance, reporting]
 guard: tests/test_reporting_protocol.py
@@ -16,7 +16,7 @@ supersedes: []
 
 **Reported:** 2026-09-27 during the MolSysSuite rollout
 `uibcdf/molsyssuite#60`.
-**Status:** Active until the local and hosted reporting guards pass.
+**Status:** Resolved on 2026-09-27.
 
 ## What
 
@@ -67,6 +67,23 @@ in #9 and scientific behavior stay with their existing owners and outcomes.
   guard target that does not resolve to a runnable test or the wheel script.
 - The contributor routes and independent hosted governance job use the local
   check; local and hosted evidence passes before this issue closes.
+
+## Resolution and verification
+
+Commit `10aa0c8` added the local template, parser, generated queue/archive
+indexes, documented wheel-guard profile, contributor routes and independent
+governance job. The original issue identities #6, #7 and #9 are preserved.
+The archive index includes the resolved wheel bug in `solved_bugs/` without
+moving or rewriting that historical record.
+
+Locally, the index check, three reporting tests, eight repository tests,
+Ruff lint and Ruff format all passed. On the exact commit, hosted CI run
+`36356554719` passed the independent reporting-governance job, including
+index validation and reporting tests. The MolSysSuite policy run
+`36356555031` passed. The scientific matrix is separate evidence and is not
+required to establish the reporting lifecycle. The durable guard is
+`tests/test_reporting_protocol.py`; the local rule is
+`devguide/reporting_protocol.md`.
 
 ## Provenance
 

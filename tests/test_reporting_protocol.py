@@ -40,7 +40,7 @@ class TestReportingProtocol(unittest.TestCase):
         pending = next(
             report
             for report in reports
-            if report.fields["issue"] == "uibcdf/lindelint#11"
+            if report.fields["issue"] == "uibcdf/lindelint#9"
         )
         fields = dict(pending.fields)
         fields["issue"] = ""
