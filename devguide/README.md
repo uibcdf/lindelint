@@ -24,3 +24,4 @@ LinDelInt is the high-performance interpolation engine for the **MolSysSuite**. 
 
 - [Pending bugs](pending_bugs/README.md)
 - [Solved bugs](solved_bugs/README.md)
+- [Pending proposals](pending_proposals/README.md)
