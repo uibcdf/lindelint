@@ -25,3 +25,9 @@ LinDelInt is the high-performance interpolation engine for the **MolSysSuite**. 
 - [Pending bugs](pending_bugs/README.md)
 - [Solved bugs](solved_bugs/README.md)
 - [Pending proposals](pending_proposals/README.md)
+- [Permanent report archive and generated index](archive/README.md)
+
+Before filing or closing a bug or proposal, read the local
+[reporting protocol](reporting_protocol.md), open the owning GitHub issue and
+use the [report template](templates/report.md). Run
+`python devtools/devguide_index.py --check` before committing.

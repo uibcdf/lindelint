@@ -18,6 +18,19 @@ on:
   workflow_dispatch:
 
 jobs:
+  governance:
+    name: Reporting governance on Linux Python 3.13
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Validate report records and generated indexes
+      run: python devtools/devguide_index.py --check
+    - name: Test the reporting guard
+      run: python -m unittest discover -s tests -p test_reporting_protocol.py
+
   test:
     name: Test on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
     runs-on: ${{ matrix.cfg.os }}
