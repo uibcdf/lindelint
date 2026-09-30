@@ -79,3 +79,13 @@ the declared Conda platform artifacts install and satisfy published claims.
 - Observe actual daily schedule and hosted external-PR execution.
 - Review claimed distribution platforms independently before claiming adoption.
 - Keep tests/test_ci_backlog.py as the durable debt guard.
+
+## Hosted verification
+
+Implementation 78ddc30 was pushed directly to main; GitHub reported bypass
+of the explicit PR rule and seven required checks. Suite policy 36700140495
+passed. Initial probe 36700190976 found zero skipped commits since baseline
+ed588ab and omitted all six matrix jobs; independent reporting still passed.
+
+The next documentation-only skipped push is a deliberate recovery check.
+It changes this report only; scientific implementation and tests are preserved.
