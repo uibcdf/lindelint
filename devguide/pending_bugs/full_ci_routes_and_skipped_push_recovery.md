@@ -1,11 +1,11 @@
 ---
 summary: Complete contributor full-CI routes and skipped-push recovery.
 issue: uibcdf/lindelint#12
-status: active
+status: partial
 opened: 2026-09-30
 closed:
 severity: medium
-verification: inspected
+verification: measured
 area: [governance, ci]
 guard: tests/test_ci_backlog.py
 normative:
@@ -53,8 +53,8 @@ steps succeeded. Fresh collaborator API listed only dprada/LMMV, both admins.
 The updated protection API confirms strict seven supported checks, an explicit
 PR requirement with zero approvals, and admin bypass. Local Python 3.13.15,
 NumPy 2.4.6, SciPy 1.18.0 and Numba 0.67.0: `pytest` passed 12/12; Ruff,
-reporting/index guards and central component conformance passed. New hosted
-routes are pending execution evidence.
+reporting/index guards and central component conformance passed. Hosted route verification is recorded below; actual daily schedule,
+external-PR execution and publication-platform review remain pending.
 
 ## Alternatives and refuted paths
 
@@ -87,5 +87,27 @@ of the explicit PR rule and seven required checks. Suite policy 36700140495
 passed. Initial probe 36700190976 found zero skipped commits since baseline
 ed588ab and omitted all six matrix jobs; independent reporting still passed.
 
-The next documentation-only skipped push is a deliberate recovery check.
-It changes this report only; scientific implementation and tests are preserved.
+Documentation-only skipped push 81c45be deliberately exercised recovery,
+with GitHub bypass notices for the PR rule and seven checks. Debt probe
+36700480542 found exactly one skipped commit since successful full CI at
+78ddc30 and omitted the six heavy jobs. Complete manual CI 36700581051 at
+81c45be passed reporting and all six supported Linux/macOS cells. Native
+step evidence confirmed `Run tests` and the interpreter/architecture assertion
+succeeded in every cell; the decision job was intentionally skipped for
+unconditional manual execution. GH Run Receptor 1.0.0 preserved success.
+Recovery probe 36700906324 recognized 81c45be as the full watermark, found
+zero debt and omitted the six heavy jobs. No intermediate full push could
+clear the debt: the manual run executed at the deliberately skipped head.
+
+Routine full CI 36700139663 at 78ddc30 also passed reporting and all six cells
+with both required steps executed. These observed routes establish the
+implementation and recovery control, not actual daily or external-PR execution.
+Those acceptance items and publication-platform claims keep #12 partial/open.
+
+Evidence URLs:
+- https://github.com/uibcdf/lindelint/actions/runs/36700139663
+- https://github.com/uibcdf/lindelint/actions/runs/36700140495
+- https://github.com/uibcdf/lindelint/actions/runs/36700190976
+- https://github.com/uibcdf/lindelint/actions/runs/36700480542
+- https://github.com/uibcdf/lindelint/actions/runs/36700581051
+- https://github.com/uibcdf/lindelint/actions/runs/36700906324

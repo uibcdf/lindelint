@@ -5,9 +5,9 @@ Open defects have an owning LinDelInt issue and a report from
 
 <!-- generated: devguide_index -->
 
-### Active (1)
+### Partial (1)
 
-- [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#12](https://github.com/uibcdf/lindelint/issues/12) — Complete contributor full-CI routes and skipped-push recovery. *(active, inspected)*
+- [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#12](https://github.com/uibcdf/lindelint/issues/12) — Complete contributor full-CI routes and skipped-push recovery. *(partial, measured)*
 
 ### Open (1)
 
