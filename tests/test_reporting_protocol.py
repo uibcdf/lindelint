@@ -24,6 +24,7 @@ class TestReportingProtocol(unittest.TestCase):
                 "uibcdf/lindelint#7",
                 "uibcdf/lindelint#9",
                 "uibcdf/lindelint#11",
+                "uibcdf/lindelint#12",
             },
         )
         result = subprocess.run(
