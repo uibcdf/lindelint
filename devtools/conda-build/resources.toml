@@ -1,0 +1,10 @@
+reason = "Pure Python tracked payload; version module, package roots and every committed runtime data file are required. No installed platform support is inferred."
+version_file = "site-packages/lindelint/_version.py"
+required_paths = [
+  "site-packages/lindelint/_version.py",
+  "site-packages/lindelint/__init__.py",
+  "site-packages/lindelint/py.typed",
+]
+
+# Add installed_gate only with the reviewed component-owned installed workflow.
+# See the shared guide for title, complete cell/step descriptor and exact-file identity.
