@@ -9,6 +9,8 @@
 [![GitHub release](https://img.shields.io/github/v/release/uibcdf/lindelint)](https://github.com/uibcdf/lindelint/releases/latest)
 [![Conda](https://img.shields.io/conda/vn/uibcdf/lindelint)](https://anaconda.org/uibcdf/lindelint)
 
+Coverage: LinDelINT Python tests, uploaded from Linux/Python 3.13 on eligible full CI runs; weekly and conditional nightly recovery retain the existing cadence. The badge reflects the last uploaded report, which may lag later direct or skip-CI commits; it does not certify a full matrix or scientific correctness.
+
 Linear Delaunay Interpolator of scalar and vectorial fields (off-grid).
 
 ## License
