@@ -41,13 +41,13 @@ jobs:
         run: python devtools/ci_backlog.py
 
   governance:
-    name: Reporting governance on Linux Python 3.13
+    name: Reporting governance on Linux Python 3.14
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.13"
+        python-version: "3.14"
     - name: Validate report records and generated indexes
       run: python devtools/devguide_index.py --check
     - name: Test the reporting guard

@@ -24,8 +24,8 @@ run the offline reporting guard. Closed records stay in the permanent archive.
 Use English in code, documentation, issues and commits. Keep changes focused, test
 user-visible behavior, preserve human work and never commit secrets.
 
-The required source contract is Python 3.11–3.14; routine development remains
-on Python 3.13. Qualification and public delivery are tracked in
+The required source contract is Python 3.11–3.14; routine development uses
+Python 3.14. Qualification and public delivery are tracked in
 `uibcdf/lindelint#14`. Keep metadata, recipe and full CI aligned; ordinary
 installed evidence must not bypass `Requires-Python`. Preserve truthful
 public support claims until the suite records admission.
