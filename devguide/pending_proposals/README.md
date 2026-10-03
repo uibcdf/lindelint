@@ -5,8 +5,9 @@ Open proposals have an owning LinDelInt issue and a report from
 
 <!-- generated: devguide_index -->
 
-### Active (1)
+### Active (2)
 
+- [`adopt_required_python_314.md`](adopt_required_python_314.md) — [#14](https://github.com/uibcdf/lindelint/issues/14) — Adopt the required four-minor Python contract and qualify installed delivery *(active, inspected)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#9](https://github.com/uibcdf/lindelint/issues/9) — Review LinDelInt Python ecosystem policy adoption. *(active, measured)*
 
 ### Partial (1)

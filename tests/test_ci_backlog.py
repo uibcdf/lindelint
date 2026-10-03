@@ -52,6 +52,12 @@ def test_every_python_minor_must_execute_the_full_suite(monkeypatch):
     assert ci_backlog.full_linux_passed("uibcdf/lindelint", 1, "token")
     evidence[0]["steps"][0]["conclusion"] = "skipped"
     assert not ci_backlog.full_linux_passed("uibcdf/lindelint", 1, "token")
+
+
+def test_a_previous_three_minor_matrix_cannot_clear_314_debt(monkeypatch):
+    evidence = [job for job in jobs() if "Python 3.14" not in job["name"]]
+    monkeypatch.setattr(ci_backlog, "api_json", lambda *_: {"jobs": evidence})
+    assert not ci_backlog.full_linux_passed("uibcdf/lindelint", 1, "token")
     evidence = jobs()[:-1]
     assert not ci_backlog.full_linux_passed("uibcdf/lindelint", 1, "token")
 
