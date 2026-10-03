@@ -179,7 +179,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Upload test results to Codecov
-      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.13' && ${{ !cancelled() }}
+      if: ${{ matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.13' && !cancelled() }}
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

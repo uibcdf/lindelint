@@ -66,3 +66,25 @@ governance change. Public package delivery remains under uibcdf/lindelint#13.
 The recovery regression is
 `tests/test_ci_backlog.py::test_a_previous_three_minor_matrix_cannot_clear_314_debt`.
 This issue remains open while scientific/public qualification is incomplete.
+
+### Test-results publisher condition inspected on 2026-10-03
+
+Expanding the matrix exposed an existing malformed mixed expression in the
+test-results upload condition. Actionlint reported that surrounding text made the
+condition always true. The complete condition is now one GitHub expression,
+retaining test-results publication only from Linux/Python 3.13 after failed tests
+as well as successful tests, unless the run is cancelled. Python 3.14 cells
+run the suite without publishing additional test-results uploads. The separate
+coverage report publisher was already correctly scoped to Linux/Python 3.13.
+
+### Hosted source qualification on 2026-10-03
+
+Source `1fab05063af49697324343bc1df97d9672b2bf5c` passed
+[CI run 37104544799](https://github.com/uibcdf/lindelint/actions/runs/37104544799):
+all eight Linux/macOS ARM jobs executed installation, wheel resource
+validation, import, interpreter/architecture verification and full tests.
+The policy and Conda publication-governance runs also passed. This qualifies
+the tested source matrix; candidate/channel and independent public
+clean-install evidence remain pending under uibcdf/lindelint#13. The malformed
+test-results condition was reproduced in this run as uploads from non-routine
+cells; the correction is checked by actionlint before publication.
