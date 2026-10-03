@@ -1,7 +1,7 @@
 ---
 summary: Adopt the required four-minor Python contract and qualify installed delivery
 issue: uibcdf/lindelint#14
-status: active
+status: partial
 opened: 2026-10-03
 closed:
 verification: inspected
@@ -88,3 +88,16 @@ the tested source matrix; candidate/channel and independent public
 clean-install evidence remain pending under uibcdf/lindelint#13. The malformed
 test-results condition was reproduced in this run as uploads from non-routine
 cells; the correction is checked by actionlint before publication.
+
+### Qualification checkpoint — 2026-10-03
+
+Source `bf3fc3af162dbdde6d8c00a0c9ed894112bfb0fb`: [CI run 37105584626](https://github.com/uibcdf/lindelint/actions/runs/37105584626).
+All eight full test jobs pass. The corrected test-results publisher executes
+only on Linux/Python 3.13; all other seven uploads are skipped as intended.
+Public candidate/channel qualification remains under uibcdf/lindelint#13.
+
+Main now retains strict PR protection with 9 checks, adding Linux and
+macOS ARM Python 3.14 to the prior checks. Existing administrator bypass for
+internal direct pushes is preserved. Source feasibility is recorded centrally
+as `authorized`, not public `admitted` support; the badge remains unchanged.
+A documentary skipped push must remain visible to nightly recovery.
