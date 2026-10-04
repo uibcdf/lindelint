@@ -30,7 +30,18 @@ Python 3.14. Qualification and public delivery are tracked in
 installed evidence must not bypass `Requires-Python`. Preserve truthful
 public support claims until the suite records admission.
 
-Run these local gates before committing:
+Choose local gates before committing by the changed code, inputs and scope:
+
+- Documentation, instructions and evidence require applicable reporting/index,
+  link and synchronized-guide checks; prose changes alone do not require the
+  scientific suite.
+- Executable behavior, dependency, metadata, packaging and integration changes
+  require relevant code/contract tests and applicable lint, format and local
+  type checks. Broaden validation when the affected boundary requires it.
+- Scientific exploration requires informative hypothesis cases and explicit
+  limits; an administrative check does not establish scientific equivalence.
+
+Available commands (select applicable checks and test scope):
 
 ```bash
 ruff check .
@@ -39,6 +50,21 @@ python devtools/devguide_index.py --check
 python -m unittest discover -s tests -p test_reporting_protocol.py
 pytest
 ```
+
+## Direct pushes and scoped local validation
+
+Follow [the common checkpoint policy](MOLSYSSUITE_GUIDE.md#direct-pushes-and-validation-checkpoints)
+for authorized internal direct pushes by `dprada` and `LMMV`. Batch focused local
+commits when remote visibility is unnecessary; a permitted interim CI skip is
+conditional, never the default after every locally checked change. Retain local
+results while tested code, inputs, environment and scope remain applicable.
+Normally finish with an unskipped head and inspect its applicable CI, or explicitly
+execute and verify those exact-head gates manually. Record missing evidence,
+untested scope, owning issue and recovery route; administrative checks do not
+clear full-suite backlog. External PRs, admission and publication require all
+mandatory executed gates for the exact candidate and required installed file.
+An authorized manual qualification retains the original producer and artifact
+bytes/digest; a marker alone neither waives a gate nor disqualifies that evidence.
 
 ## Modular reusable tools
 
