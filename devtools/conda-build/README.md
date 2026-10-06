@@ -1,37 +1,63 @@
-# lindelint Conda publication
+# LinDelINT Conda publication
 
 Owning review: uibcdf/lindelint#13; suite contract: uibcdf/molsyssuite#45.
 
-This recipe now produces one `noarch: python` file. Its Python bounds and required
-runtime dependencies follow `pyproject.toml`; no Python 3.7 or per-platform
-conversion route is used. Build tools are host requirements. The shared workflow
-freezes the reviewed version in an ephemeral checkout and inspects metadata,
-embedded version and the committed resource inventory before uploading.
+The recipe prepares one immutable `noarch: python` coordinate. Required runtime
+dependencies and Python bounds follow `pyproject.toml`; build tools belong in
+host requirements. The shared workflow freezes the reviewed version in an ephemeral
+checkout and inspects metadata, embedded version and the complete resource inventory.
+scikit-learn is a development/test/docs tool, not a runtime dependency.
 
-Follow the [shared noarch workflow guide](https://github.com/uibcdf/molsyssuite/blob/main/devguide/noarch_conda_workflow.md).
-The thin build and promotion wrappers pin MolSysSuite at `42e4de425871c125ef058842075c39e50fc6ac64`.
-The existing `ANACONDA_UIBCDF_TOKEN` secret is explicitly mapped; its availability
-and validity have not been confirmed by this migration.
+Follow the [shared noarch guide](https://github.com/uibcdf/molsyssuite/blob/main/devguide/noarch_conda_workflow.md).
+All four shared publication wrappers pin MolSysSuite at
+`38db709ecc07451ff36ea84573d585f9af6b4df7`. The existing
+`ANACONDA_UIBCDF_TOKEN` mapping is retained; access/validity remains unconfirmed.
 
-`release_plan.example.toml` is an example only. Before the first affected release,
-review and commit `release_plan.toml` with a real immutable version/build and
-candidate conditions. Require every declared source CI cell and its executed
-`Run tests` step. A green daily probe with omitted science is insufficient.
+## Candidate and executed gates
 
-The first noarch candidate must be staged, then qualified outside the source
-checkout across every claimed OS/Python cell. The component-owned installed wrapper now calls the shared
-qualification workflow across the committed six-cell Linux/macOS arm64 matrix.
-Its `installed_tests` selection retains the whole local `tests` directory.
-Dispatch it explicitly for the staged filename/digest; it never runs on pushes.
-Failed/missing/skipped installed evidence blocks promotion. Run-title/file/digest
-binding and descriptor fields are defined in the shared guide.
+`release_plan.example.toml` is onboarding context only; it authorizes no release.
+Before a candidate, review and commit a real `release_plan.toml`. Build/promotion
+first call the local reusable owner review, which requires the exact clean candidate
+SHA/version, tracked real plan and the reviewed example's gate/matrix profile.
+Changing that profile requires reviewing the example too.
 
-Dispatch the build wrapper with full candidate SHA and reviewed version. Dispatch
-promotion with that SHA, version, staged digest and existing successful installed
-run ID. Promotion adds a label to the same tested file; it does not build or upload
-again. Later direct releases need an eligible reviewed plan, exact-tag CI evidence,
-public dependency closure and conclusive all-label absence. Never overwrite.
+All eleven native source jobs and named steps are required: eight full Linux/macOS
+arm64 Python 3.11–3.14 source test cells (including actual installed dependency-bound
+preflight), independent reporting/distribution controls, policy/lint/format and Conda
+governance. A successful daily probe with omitted science is insufficient.
+Declaration-only checks cannot clear scientific debt or authorize publication.
 
-This configuration is administrative readiness only. No scientific execution,
-installed OS claim, credential check, source tag or package publication occurred.
-Remaining dependency-environment/public-claim review stays in the owning issue.
+The first noarch file must be staged and qualified outside source across all eight
+Linux/macOS arm64 Python 3.11–3.14 cells. Every installed cell requires four executed
+successful steps: install the exact artifact, validate installed files, run installed
+tests, and recheck provenance after scientific tests. The whole `tests` selection
+is retained. The installed wrapper is dispatched explicitly for the original source,
+filename and digest; it never runs on pushes. Missing/skipped/failed evidence blocks
+promotion. Resource checks include every tracked runtime file and the generated version.
+
+Dispatch build with the full candidate SHA and reviewed version. Promotion also needs
+the staged SHA-256 and successful installed run ID. If a newer administrative workflow
+commit is needed, supply its full `qualification_sha` separately; retain the original
+producer SHA and file digest. Promotion labels those same bytes without rebuilding
+or reuploading. Later direct releases still need an eligible reviewed plan, executed
+exact-tag gates, public closure and conclusive all-label absence. Never overwrite.
+
+## Maintained inputs and early checks
+
+The sixteen-route inventory is `devtools/dependency_routes.toml`. Use the reviewed
+clean SDK clone and resolved consuming interpreter:
+
+```bash
+python devtools/check_distribution_inputs.py --suite-root /path/to/molsyssuite --output /tmp/lindelint-inputs.json
+LINDELINT_SUITE_ROOT=/path/to/molsyssuite python -m unittest discover -s devtools/tests -p test_distribution_inputs.py
+```
+
+Default mode checks actual installed versions against public metadata. Explicit
+`--declared-only` is an offline administrative review, not runtime qualification.
+Add `--candidate-sha FULL_SHA --version X.Y.Z` to bind the real committed plan.
+These commands do not build or publish. Workflow edits require reviewing the
+recorded inventory digest and purpose.
+
+Historical public 0.2.0 files do not certify current source delivery. The first real
+plan, executed source/installed evidence, credential access and public poststate remain
+pending under #13/#14. This configuration alone grants no installed-platform claim.

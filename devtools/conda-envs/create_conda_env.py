@@ -1,125 +1,77 @@
+"""Create an owner environment with supported Python and strict priority."""
+
+from __future__ import annotations
+
 import argparse
-import glob
 import os
 import re
 import shutil
-import subprocess as sp
-from contextlib import contextmanager
+import subprocess
+import sys
+import tomllib
+from pathlib import Path
 from tempfile import TemporaryDirectory
 
-# YAML imports
-try:
-    import yaml  # PyYAML
+import yaml
+from packaging.specifiers import SpecifierSet
 
-    loader = yaml.safe_load
-except ImportError:
-    try:
-        import ruamel_yaml as yaml  # Ruamel YAML
-    except ImportError:
-        try:
-            from importlib import util as import_util
-
-            CONDA_BIN = os.path.dirname(os.environ["CONDA_EXE"])
-            ruamel_yaml_path = glob.glob(
-                os.path.join(
-                    CONDA_BIN,
-                    "..",
-                    "lib",
-                    "python*.*",
-                    "site-packages",
-                    "ruamel_yaml",
-                    "__init__.py",
-                )
-            )[0]
-            spec = import_util.spec_from_file_location("ruamel_yaml", ruamel_yaml_path)
-            yaml = spec.loader.load_module()
-        except (KeyError, ImportError, IndexError):
-            raise ImportError(
-                "No YAML parser could be found. Please install PyYAML or Ruamel YAML."
-            )
-    loader = yaml.YAML(typ="safe").load
+ROOT = Path(__file__).resolve().parents[2]
 
 
-@contextmanager
-def temp_cd():
-    """Temporary working directory context."""
-    cwd = os.getcwd()
-    with TemporaryDirectory() as td:
-        try:
-            os.chdir(td)
-            yield
-        finally:
-            os.chdir(cwd)
+def selected_environment(path: Path, python: str, *, root: Path = ROOT) -> dict:
+    """Keep dependencies and reject Python outside this owner's source contract."""
+    project = tomllib.loads((root / "pyproject.toml").read_text())["project"]
+    if not re.fullmatch(r"[0-9]+\.[0-9]+", python) or python not in SpecifierSet(
+        project["requires-python"]
+    ):
+        raise ValueError("Selected Python minor is outside the source contract")
+    if path.name == "development_env.yaml" and python != "3.14":
+        raise ValueError("Routine development requires Python 3.14")
+    content = yaml.safe_load(path.read_text())
+    items = content.get("dependencies")
+    if not isinstance(items, list):
+        raise ValueError("Environment needs a dependencies list")
+    content["dependencies"] = ["python=" + python] + [
+        value
+        for value in items
+        if not isinstance(value, str) or not re.match(r"^python(?:$|[ =<>])", value)
+    ]
+    return content
 
 
-# Argument parsing
-parser = argparse.ArgumentParser(
-    description="Creates a conda environment from file for a given Python version."
-)
-parser.add_argument(
-    "-n",
-    "--name",
-    type=str,
-    required=True,
-    help="The name of the created Python environment",
-)
-parser.add_argument(
-    "-p",
-    "--python",
-    type=str,
-    required=True,
-    help="The version of the created Python environment",
-)
-parser.add_argument("conda_file", help="The file for the created Python environment")
+def manager() -> str:
+    command = shutil.which("mamba") or shutil.which("conda")
+    if not command:
+        raise ValueError("Install Conda or Mamba before creating an environment")
+    return command
 
-args = parser.parse_args()
 
-# Load YAML file
-with open(args.conda_file, "r") as handle:
-    yaml_script = loader(handle.read())
-
-# Ensure correct Python version in dependencies
-python_replacement_string = f"python {args.python}*"
-try:
-    for dep_index, dep_value in enumerate(yaml_script["dependencies"]):
-        if re.match(r"python([ ><=*]+[0-9.*]*)?$", dep_value):
-            yaml_script["dependencies"].pop(dep_index)
-            break
-except (KeyError, TypeError):
-    yaml_script["dependencies"] = []
-finally:
-    yaml_script["dependencies"].insert(0, python_replacement_string)
-
-# Find package manager (mamba preferred, conda fallback)
-mamba_path = shutil.which("mamba")
-conda_path = shutil.which("conda")
-
-if mamba_path:
-    package_manager = mamba_path
-    print(f"Using Mamba: {mamba_path}")
-elif conda_path:
-    package_manager = conda_path
-    print(f"Using Conda: {conda_path}")
-else:
-    raise RuntimeError(
-        "Neither Conda nor Mamba were found. Please install one of them."
-    )
-
-# Print environment details
-print(f"Creating environment '{args.name}' with Python {args.python}")
-print(f"Using package manager: {package_manager}")
-
-# Create the environment using the preferred package manager
-with temp_cd():
-    temp_file_name = "temp_script.yaml"
-    with open(temp_file_name, "w") as f:
-        f.write(yaml.dump(yaml_script))
-
-    try:
-        sp.run(
-            [package_manager, "env", "create", "-n", args.name, "-f", temp_file_name],
+def create_environment(path: Path, name: str, python: str) -> None:
+    """Clean temporary YAML on success/failure and propagate creation errors."""
+    content = selected_environment(path, python)
+    with TemporaryDirectory(prefix="lindelint-environment-") as temporary:
+        recipe = Path(temporary) / "environment.yaml"
+        recipe.write_text(yaml.safe_dump(content, sort_keys=False))
+        subprocess.run(
+            [manager(), "env", "create", "--name", name, "--file", str(recipe)],
             check=True,
+            env={**os.environ, "CONDA_CHANNEL_PRIORITY": "strict"},
         )
-    except sp.CalledProcessError as e:
-        print(f"Error creating environment: {e}")
-        exit(1)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-n", "--name", required=True)
+    parser.add_argument("-p", "--python", default="3.14")
+    parser.add_argument("conda_file", type=Path)
+    args = parser.parse_args()
+    try:
+        create_environment(args.conda_file.resolve(), args.name, args.python)
+    except (OSError, ValueError, yaml.YAMLError, subprocess.SubprocessError) as exc:
+        print(f"Environment creation: FAIL — {exc}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -45,6 +45,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Check out the reviewed distribution SDK
+      uses: actions/checkout@v4
+      with:
+        repository: uibcdf/molsyssuite
+        ref: 38db709ecc07451ff36ea84573d585f9af6b4df7
+        path: .molsyssuite
+        persist-credentials: false
     - uses: actions/setup-python@v5
       with:
         python-version: "3.14"
@@ -52,6 +59,12 @@ jobs:
       run: python devtools/devguide_index.py --check
     - name: Test the reporting guard
       run: python -m unittest discover -s tests -p test_reporting_protocol.py
+    - name: Install administrative test dependencies
+      run: python -m pip install 'PyYAML>=6' 'Jinja2>=3,<4' 'packaging>=24'
+    - name: Review declared distribution inputs
+      run: python devtools/check_distribution_inputs.py --suite-root .molsyssuite --declared-only
+    - name: Test distribution controls
+      run: python -m unittest discover -s devtools/tests -p test_distribution_inputs.py
 
   test:
     needs: nightly-decision
@@ -85,6 +98,14 @@ jobs:
       run: |
         uname -a
 
+    - name: Check out the reviewed distribution SDK
+      uses: actions/checkout@v4
+      with:
+        repository: uibcdf/molsyssuite
+        ref: 38db709ecc07451ff36ea84573d585f9af6b4df7
+        path: .molsyssuite
+        persist-credentials: false
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -116,6 +137,10 @@ jobs:
       shell: bash -l {0}
       run: |
         python -m pip install . --no-deps
+
+    - name: Check distribution inputs
+      shell: bash -l {0}
+      run: python devtools/check_distribution_inputs.py --suite-root .molsyssuite
 
     - name: Verify built wheel includes runtime packages
       shell: bash -l {0}

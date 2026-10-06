@@ -1,0 +1,99 @@
+schema = "molsyssuite.dependency-routes@2"
+reason = "Inventory every current LinDelINT source/runtime/publication route under uibcdf/lindelint#13."
+source_routes = []
+source_reason = "Required runtime providers are resolved from public Conda; no sibling source checkout replaces a required distribution in CI."
+
+[shared_tool]
+repository = "uibcdf/molsyssuite"
+commit = "38db709ecc07451ff36ea84573d585f9af6b4df7"
+
+[[recipes]]
+path = "devtools/conda-build/meta.yaml"
+kind = "shared-noarch"
+plan = "devtools/conda-build/release_plan.example.toml"
+resources = "devtools/conda-build/resources.toml"
+reason = "Onboarding context only; build/promotion owner review additionally requires the real committed plan and unchanged executed gate profile."
+
+[[environments]]
+path = "devtools/conda-envs/production_env.yaml"
+kind = "runtime"
+purpose = "production"
+channel_priority = "strict"
+reason = "Generated from public metadata and owner tool groups; actual installed public bounds are checked before consuming source tests or docs."
+
+[[environments]]
+path = "devtools/conda-envs/development_env.yaml"
+kind = "runtime"
+purpose = "development"
+channel_priority = "strict"
+reason = "Generated from public metadata and owner tool groups; actual installed public bounds are checked before consuming source tests or docs."
+narrowing_reason = "Routine development selects Python 3.14; source compatibility retains all four supported minors."
+
+[[environments]]
+path = "devtools/conda-envs/test_env.yaml"
+kind = "runtime"
+purpose = "test"
+channel_priority = "strict"
+reason = "Generated from public metadata and owner tool groups; actual installed public bounds are checked before consuming source tests or docs."
+
+[[environments]]
+path = "devtools/conda-envs/docs_env.yaml"
+kind = "runtime"
+purpose = "documentation"
+channel_priority = "strict"
+reason = "Generated from public metadata and owner tool groups; actual installed public bounds are checked before consuming source tests or docs."
+
+[[environments]]
+path = "devtools/conda-envs/setup_env.yaml"
+kind = "build-only"
+reason = "Build bootstrap; consumer runtime is supplied by the independent recipe or runtime environment."
+
+[[environments]]
+path = "devtools/conda-envs/build_env.yaml"
+kind = "build-only"
+reason = "Build bootstrap; consumer runtime is supplied by the independent recipe or runtime environment."
+
+[[environments]]
+path = "devtools/conda-envs/importable_env.yaml"
+kind = "resolved-package"
+reason = "Unused legacy counterpart MolSysMT fixture; installs its resolved package rather than LinDelINT source, retains explicit historical dev/default channels, not a public LinDelINT runtime or current CI qualification claim. Any new use needs owner review under #9."
+
+[[workflows]]
+path = ".github/workflows/CI.yaml"
+sha256 = "27cc7c3dd9f31bef3fb1d90fbdb3b4d1b43f0ac096f3e2826b3e9bd91232e78a"
+reason = "Eight existing source cells preserve full tests/recovery; public strict runtime, no-deps package install and default actual installed-bound preflight before wheel/import/tests. Separate administrative job is declaration-only and cannot clear science."
+
+[[workflows]]
+path = ".github/workflows/build_and_upload_conda_packages.yaml"
+sha256 = "fb9ed8f8d14dfd61a1bc3b64d73ffd27034cacf35c46ac92f2cfbabd5f73ec77"
+reason = "Owner exact candidate/committed plan review precedes immutable shared one-file staging build; all executed source jobs/steps remain required before mutation."
+
+[[workflows]]
+path = ".github/workflows/conda_publication_governance.yaml"
+sha256 = "00d45a0e35a7a889a34c5f73b5b69502ad3ff5374925a918267d8f43286b5839"
+reason = "Immutable shared administrative recipe/resources/publication contract, no science or credential access."
+
+[[workflows]]
+path = ".github/workflows/molsyssuite-policy.yml"
+sha256 = "6cc62208156f765ca0456e3bc5f398934263e03afc7063c69afa692c5dafdffd"
+reason = "Retained policy-v1.5.4 repository/lint/format conformance; no runtime install or publication."
+
+[[workflows]]
+path = ".github/workflows/promote_conda_package.yaml"
+sha256 = "8d5ee77d3abca0a713f31a6a26f0586ccf31b54b53d9e33e8d9d54c44cb91ea4"
+reason = "Owner exact candidate/real plan review then immutable same-file promoter, exact source/native installed matrix and digest binding; newer qualification workflow identity stays separate."
+
+[[workflows]]
+path = ".github/workflows/review_distribution_candidate.yaml"
+sha256 = "ffeda99aed1886a78e19c17c15a447196a4391d37bcaa44c3f8569c192d662f1"
+reason = "Read-only reusable owner declaration/candidate preflight; does not replace actual installed-bound source CI or shared executed-gate acquisition."
+
+[[workflows]]
+path = ".github/workflows/sphinx_docs_to_gh_pages.yaml"
+sha256 = "87023452b474116ab9f4493506db12b901ec2e76b1dac7e63af331e35c9c9d11"
+reason = "Strict public docs runtime, retained Python 3.13 narrowing within public bounds and no-deps source install; default actual installed-bound review precedes import/docs publication."
+
+[[workflows]]
+path = ".github/workflows/test_installed_conda_package.yaml"
+sha256 = "23c7cf52309b5b2e8c2f23f11870f373bbfd43adb702a626878205553d18bce5"
+reason = "Manual original-source/file/digest shared qualification across eight Linux/macOS arm64 Python 3.11-3.14 cells, four mandatory provenance/science steps, no publication secret."

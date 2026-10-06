@@ -1,31 +1,52 @@
+"""Update the active environment with strict priority and propagated failures."""
+
+from __future__ import annotations
+
 import argparse
 import os
-import shutil
-import subprocess as sp
+import subprocess
+import sys
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
-# Args
-parser = argparse.ArgumentParser(
-    description="Updates the activated conda environment with the packages in a yaml file"
-)
-parser.add_argument("conda_file", help="The file for the created Python environment")
+import yaml
+from create_conda_env import manager, selected_environment
 
-args = parser.parse_args()
 
-# Figure out conda path
-if "CONDA_EXE" in os.environ:
-    conda_path = os.environ["CONDA_EXE"]
-else:
-    conda_path = shutil.which("conda")
-if conda_path is None:
-    raise RuntimeError(
-        "Could not find a conda binary in CONDA_EXE variable or in executable search path"
+def update_environment(path: Path) -> None:
+    content = selected_environment(
+        path, f"{sys.version_info.major}.{sys.version_info.minor}"
     )
+    with TemporaryDirectory(prefix="lindelint-update-") as temporary:
+        recipe = Path(temporary) / "environment.yaml"
+        recipe.write_text(yaml.safe_dump(content, sort_keys=False))
+        subprocess.run(
+            [
+                manager(),
+                "env",
+                "update",
+                "--prefix",
+                sys.prefix,
+                "--file",
+                str(recipe),
+                "--prune",
+            ],
+            check=True,
+            env={**os.environ, "CONDA_CHANNEL_PRIORITY": "strict"},
+        )
 
-print("CONDA FILE NAME {}".format(args.conda_file))
-print("CONDA PATH      {}".format(conda_path))
 
-# Write to a temp directory which will always be cleaned up
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("conda_file", type=Path)
+    args = parser.parse_args()
+    try:
+        update_environment(args.conda_file.resolve())
+    except (OSError, ValueError, yaml.YAMLError, subprocess.SubprocessError) as exc:
+        print(f"Environment update: FAIL — {exc}", file=sys.stderr)
+        return 1
+    return 0
 
-sp.call(
-    "{} env update --file {} --prune".format(conda_path, args.conda_file), shell=True
-)
+
+if __name__ == "__main__":
+    raise SystemExit(main())

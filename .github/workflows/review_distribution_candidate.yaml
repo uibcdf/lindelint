@@ -1,0 +1,43 @@
+name: Review distribution candidate inputs
+on:
+  workflow_call:
+    inputs:
+      candidate_sha:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check out the reviewed distribution SDK
+        uses: actions/checkout@v4
+        with:
+          repository: uibcdf/molsyssuite
+          ref: 38db709ecc07451ff36ea84573d585f9af6b4df7
+          path: .molsyssuite
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install administrative dependencies
+        run: python -m pip install 'PyYAML>=6' 'Jinja2>=3,<4' 'packaging>=24'
+      - name: Bind the real owner plan to the exact candidate
+        env:
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+          CANDIDATE_VERSION: ${{ inputs.version }}
+        run: |
+          python devtools/check_distribution_inputs.py --suite-root .molsyssuite \
+            --declared-only --candidate-sha "$CANDIDATE_SHA" --version "$CANDIDATE_VERSION"
+          python .molsyssuite/devtools/scripts/noarch_conda.py --root . \
+            --plan devtools/conda-build/release_plan.toml

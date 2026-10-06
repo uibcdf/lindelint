@@ -21,7 +21,6 @@ requirements:
     - smonitor
     - argdigest
     - depdigest
-    - scikit-learn
 test:
   imports:
     - lindelint

@@ -13,6 +13,14 @@ Coverage: LinDelINT Python tests, uploaded from Linux/Python 3.13 on eligible fu
 
 Linear Delaunay Interpolator of scalar and vectorial fields (off-grid).
 
+Distribution status: the Conda badge reports historical public availability
+(latest inspected release: 0.2.0). Current source targets Python 3.11–3.14;
+the prepared single-file `noarch: python` route does not establish a new public
+package or installed Python 3.14 support. Delivery and admission remain tracked
+in [uibcdf/lindelint#14](https://github.com/uibcdf/lindelint/issues/14).
+See [installation status](docs/contents/about/installation.md) and the
+[publication controls](devtools/conda-build/README.md).
+
 ## License
 
 This project is under an MIT License. [A copy of the license text is included in this repository](LICENSE).

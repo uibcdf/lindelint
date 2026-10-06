@@ -22,6 +22,13 @@ LinDelInt is the high-performance interpolation engine for the **MolSysSuite**. 
 
 ## Defect records
 
+Distribution controls and remaining public delivery are tracked in
+`uibcdf/lindelint#13` and `uibcdf/lindelint#14` respectively. The maintained
+dependency-route inventory and early preflight live in
+`devtools/dependency_routes.toml` and `devtools/check_distribution_inputs.py`.
+See the [Conda publication guide](../devtools/conda-build/README.md) for the
+real-plan requirement, executed source gates and exact-file installed evidence.
+
 - [Pending bugs](pending_bugs/README.md)
 - [Solved bugs](solved_bugs/README.md)
 - [Pending proposals](pending_proposals/README.md)

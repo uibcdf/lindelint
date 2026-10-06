@@ -1,9 +1,21 @@
 reason = "Pure Python tracked payload; version module, package roots and every committed runtime data file are required. No installed platform support is inferred."
+import_name = "lindelint"
 version_file = "site-packages/lindelint/_version.py"
 required_paths = [
   "site-packages/lindelint/_version.py",
   "site-packages/lindelint/__init__.py",
   "site-packages/lindelint/py.typed",
+  "site-packages/lindelint/_argdigest.py",
+  "site-packages/lindelint/_depdigest.py",
+  "site-packages/lindelint/_pyunitwizard.py",
+  "site-packages/lindelint/_smonitor.py",
+  "site-packages/lindelint/_private/smonitor/__init__.py",
+  "site-packages/lindelint/_private/smonitor/catalog.py",
+  "site-packages/lindelint/_private/smonitor/meta.py",
+  "site-packages/lindelint/interpolator.py",
+  "site-packages/lindelint/interpolator_gpu.py",
+  "site-packages/lindelint/interpolator_parallel.py",
+  "site-packages/lindelint/interpolator_vectorized.py",
 ]
 
 [installed_gate]
@@ -12,7 +24,7 @@ platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]
 prepare_job = "installed / prepare"
 job_template = "installed / {platform} · Python {python}"
-required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests"]
+required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests", "Recheck installed provenance after scientific tests"]
 
 [installed_tests]
 # Complete local suite selection; source scientific CI remains unchanged.
