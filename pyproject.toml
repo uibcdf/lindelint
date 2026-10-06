@@ -74,6 +74,7 @@ markers = [
 [tool.ruff]
 target-version = "py311"
 extend-exclude = [
+    ".molsyssuite",
     "ARGDIGEST_GUIDE.md",
     "DEPDIGEST_GUIDE.md",
     "GH_RUN_RECEPTOR_GUIDE.md",

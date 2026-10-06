@@ -117,3 +117,4 @@ record.txt
 
 # In this library
 lindelint/_version.py
+.molsyssuite/

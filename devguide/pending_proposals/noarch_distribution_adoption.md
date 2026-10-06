@@ -160,3 +160,17 @@ this is direct metadata-bound evidence, not transitive closure, joint runtime or
 scientific qualification. Existing shared-workspace debt stays in
 `uibcdf/molsyssuite#82`. Hosted exact-head results and first real artifact/access/
 installed/public evidence remain separate; this report stays partial.
+
+### Hosted SDK/lint isolation recovery
+
+The first delivered control commit `349a2f5ae9f5fc17ed9a4b5c58007a5d05be9e42`
+passed independent policy, Conda governance and reporting/distribution tests.
+Native CI 37544086325 exposed an owner integration regression: Ruff traversed the
+new `.molsyssuite` tool checkout and tried to parse its intentionally unrendered
+starter-template TOML. Linux/Python 3.14 had already passed all thirteen original
+source tests before the lint failure. This failure is not scientific evidence debt
+clearance or a defect in the template provider. A local SDK checkout reproduced
+the parser failure. Exclude only `.molsyssuite` from component Ruff discovery and
+ignore its transient checkout; component lint, full science and SDK input checks
+remain enabled. Recheck lint/format with the real SDK directory present and inspect
+the corrected automatic exact-head CI before recording final readiness.
