@@ -1,9 +1,9 @@
 ---
 summary: Adopt the distribution policy and a guarded single-file noarch publication route.
 issue: uibcdf/lindelint#13
-status: partial
+status: resolved
 opened: 2026-10-01
-closed:
+closed: 2026-10-08
 verification: measured
 area: [governance, distribution, compatibility]
 guard: devtools/tests/test_distribution_inputs.py
@@ -56,20 +56,30 @@ internal direct/skip pushes remain available to dprada and LMMV.
 Distribution governance and packaging identity/resources. Scientific algorithm
 repairs and complete scientific execution belong to this component's team.
 
-## Remaining adoption and acceptance criteria
+## Governance adoption and release acceptance
 
-- Inspect hosted evidence for the maintained runtime/source controls documented
-  below; retain any scientific failures with the component's team.
-- Before a candidate, commit a reviewed actual release plan and immutable build.
-- Execute the component-owned installed gate for the actual candidate before
-  promotion. The current eight-cell descriptor retains the complete local suite
-  and resource/launcher checks; missing, skipped or failed evidence fails closed.
-- Confirm publication access only through an authorized maintainer.
-- Register actual candidate/build/installed/public evidence only after execution.
+Governance adoption requires reviewed maintained recipe/runtime/source routes,
+resource and exact-candidate controls, relevant negative guards, truthful
+installation claims and executed source/control evidence. Publication access
+may remain unknown before the first new public release under the common policy.
+The executed 2026-10-06 controls and the 2026-10-08 continuity review below
+complete this governance scope.
 
-The migration implements the common source route; whole-policy adoption remains
-partial until these criteria are met. The common policy and module's negative
-guards are the durable reference; the owning issue remains open.
+The following remain mandatory **before the next public noarch delivery**,
+owned by uibcdf/lindelint#14:
+
+- Commit the real owner-reviewed release plan/version/build and execute all
+  required gates for that exact candidate. The example selects no release.
+- Confirm authorized publication access and build/stage one immutable file.
+- Execute all eight installed Linux/macOS arm64 Python 3.11–3.14 cells and
+  four mandatory steps outside source; missing/skipped/failed gates fail closed.
+- Promote those same bytes without rebuilding, independently verify public
+  poststate/clean installation and complete admission before support claims.
+
+These are future publication/admission gates, not a requirement to produce a
+release solely to close this governance adoption. Scientific repairs remain
+component-owned. Existing immutable workflow calls stay pinned; optional
+installed-root provider adoption is reviewed with the real candidate.
 
 ## Administrative verification, 2026-10-01
 
@@ -174,3 +184,38 @@ the parser failure. Exclude only `.molsyssuite` from component Ruff discovery an
 ignore its transient checkout; component lint, full science and SDK input checks
 remain enabled. Recheck lint/format with the real SDK directory present and inspect
 the corrected automatic exact-head CI before recording final readiness.
+
+## Governance adoption resolved before the next release — 2026-10-08
+
+The existing suite distribution policy explicitly permits adoption before a
+first new public release with ready CI/recipe controls, truthful installation
+scope and unknown access. The earlier partial statements above are dated
+checkpoints. Requiring actual publication to close #13 incorrectly mixed
+governance completion with future release/admission evidence.
+
+Original source `c4418a77d04da51f7a7ad061f24707c94ff028a7` already passed
+native CI 37544339221, policy 37544339763 and Conda governance 37544339940.
+A fresh independent acquisition verifies the exact original source/workflow/
+push event/attempt, all eleven mandatory jobs and required actually executed steps.
+The complete CI inventory also includes its inapplicable push backlog job,
+skipped by its scheduled/manual condition; no recovery debt is cleared.
+All nine reviewed input SHA-256 values still match current main
+`1a65d75ab3787b27493c152755de4d30f76a1f46`; its complete delta contains only
+three synchronized guides. Executable/runtime/packaging/workflow/test inputs
+retain the tested contents, and the canonical suite guide matches byte-for-byte.
+No scientific rerun or reconstructed candidate is substituted for that evidence.
+
+Disposition: governance **adopted**, CI/recipe **ready**, publication access
+**unknown**. Historical eighteen 0.1.0/0.2.0 Conda files are not a qualified
+current noarch/Python 3.14 delivery. Future real plan/access/candidate/installed/
+public qualification and admission remain uibcdf/lindelint#14. No new package,
+version, public support badge, provider pin or scientific stability claim.
+Receipt: [distribution_adoption_20261008.json](../artifacts/distribution_adoption_20261008.json).
+
+Durable guard relevance: `devtools/tests/test_distribution_inputs.py` protects
+the adopted mechanism with missing-requirement, stale-floor/resource/version,
+unclassified-route and exact-candidate negatives. The original causal SDK/Ruff
+isolation regression and eleven native jobs remain in the central source
+receipt. The common member-review policy governs the governance/release scope;
+this resolution does not relax any future candidate gate. Existing seven
+qualified-workspace dependency findings remain uibcdf/molsyssuite#82.

@@ -1,0 +1,305 @@
+{
+  "schema": "molsyssuite.distribution-adoption@1",
+  "issue": "uibcdf/molsyssuite#45",
+  "owner_issue": "uibcdf/lindelint#13",
+  "date": "2026-10-08",
+  "observed_at": "2026-10-08T16:01:48.158897+00:00",
+  "source_sha": "c4418a77d04da51f7a7ad061f24707c94ff028a7",
+  "reviewed_current_source": "1a65d75ab3787b27493c152755de4d30f76a1f46",
+  "retained_source_receipt": "devguide/rollouts/lindelint_distribution_45_20261006.json",
+  "input_sha256": {
+    "devtools/broadcast_requirements.py": "610689242400ffe2b6883c2a11efa90b6c9829de51a10caeac5a7a45276375a4",
+    "devtools/check_distribution_inputs.py": "c2162d51a1ded48de91393be51f36404eb504e9f6ca72891848029233fb8dbcb",
+    "devtools/conda-build/meta.yaml": "261c31dd4cf3f26cdf8853b3a794166949337951a83e712e19b5962b61fc996a",
+    "devtools/conda-build/release_plan.example.toml": "6126c0e5c0b33eef0d453495c2358399268fd9e52bb587c2d46a4a54bcb0df58",
+    "devtools/conda-build/resources.toml": "e77bf4d90b4c8cce6ab578ee0eac15ef7afa360f1ea535e18794566432bd6ff7",
+    "devtools/dependency_routes.toml": "87779698f6249e3127e15256a89fdd5d32c339d5bdd3ddeb9f8dbbc39599bfe9",
+    "devtools/requirements.yaml": "1dd6cd355df2742caf6613117c9cd79266cf52a842f169999e69877796e5ae0c",
+    "devtools/tests/test_distribution_inputs.py": "cbf4d2bd06d8b275ecc122ee3d662ae42bbda383bda3cc69258c671fc72253a5",
+    "pyproject.toml": "d592caab1565ee5df8604582856fe5a1f794de5097eecfc014389880211dc7f0"
+  },
+  "native_source_gates": [
+    {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 37544339221,
+      "run_attempt": 1,
+      "candidate_sha": "c4418a77d04da51f7a7ad061f24707c94ff028a7",
+      "workflow": ".github/workflows/CI.yaml",
+      "jobs": [
+        {
+          "name": "Reporting governance on Linux Python 3.14",
+          "job_id": 112544600155,
+          "required_steps": [
+            "Review declared distribution inputs",
+            "Test distribution controls",
+            "Test the reporting guard"
+          ]
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "job_id": 112544600775,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "job_id": 112544600685,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "job_id": 112544600756,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "job_id": 112544600808,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on macos-15, Python 3.11",
+          "job_id": 112544600647,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on macos-15, Python 3.12",
+          "job_id": 112544600729,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on macos-15, Python 3.13",
+          "job_id": 112544600760,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        },
+        {
+          "name": "Test on macos-15, Python 3.14",
+          "job_id": 112544600674,
+          "required_steps": [
+            "Check distribution inputs",
+            "Verify built wheel includes runtime packages",
+            "Test import module",
+            "Verify interpreter and macOS architecture",
+            "Run tests",
+            "Run Ruff lint",
+            "Check Ruff formatting"
+          ]
+        }
+      ],
+      "event": "push"
+    },
+    {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 37544339763,
+      "run_attempt": 1,
+      "candidate_sha": "c4418a77d04da51f7a7ad061f24707c94ff028a7",
+      "workflow": ".github/workflows/molsyssuite-policy.yml",
+      "jobs": [
+        {
+          "name": "policy / conformance",
+          "job_id": 112544602734,
+          "required_steps": [
+            "Check repository conformance",
+            "Check Python lint and imports",
+            "Check Python formatting"
+          ]
+        }
+      ],
+      "event": "push",
+      "exact_jobs": true
+    },
+    {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 37544339940,
+      "run_attempt": 1,
+      "candidate_sha": "c4418a77d04da51f7a7ad061f24707c94ff028a7",
+      "workflow": ".github/workflows/conda_publication_governance.yaml",
+      "jobs": [
+        {
+          "name": "publication / check",
+          "job_id": 112544602955,
+          "required_steps": [
+            "Check publication workflow controls",
+            "Check declared noarch recipe and resources without building"
+          ]
+        }
+      ],
+      "event": "push",
+      "exact_jobs": true
+    }
+  ],
+  "complete_job_inventories": [
+    {
+      "run_id": 37544339221,
+      "jobs": [
+        {
+          "name": "Reporting governance on Linux Python 3.14",
+          "job_id": 112544600155,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on macos-15, Python 3.11",
+          "job_id": 112544600647,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on macos-15, Python 3.14",
+          "job_id": 112544600674,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "job_id": 112544600685,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on macos-15, Python 3.12",
+          "job_id": 112544600729,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "job_id": 112544600756,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on macos-15, Python 3.13",
+          "job_id": 112544600760,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "job_id": 112544600775,
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "job_id": 112544600808,
+          "conclusion": "success"
+        },
+        {
+          "name": "Check skipped-commit backlog",
+          "job_id": 112544601348,
+          "conclusion": "skipped"
+        }
+      ],
+      "expected_inapplicable": [
+        "Check skipped-commit backlog"
+      ],
+      "reason": "Push does not execute the scheduled/manual backlog probe; no skipped required source gate or debt clearance."
+    },
+    {
+      "run_id": 37544339763,
+      "jobs": [
+        {
+          "name": "policy / conformance",
+          "job_id": 112544602734,
+          "conclusion": "success"
+        }
+      ],
+      "expected_inapplicable": [],
+      "reason": "Every native job required/executed."
+    },
+    {
+      "run_id": 37544339940,
+      "jobs": [
+        {
+          "name": "publication / check",
+          "job_id": 112544602955,
+          "conclusion": "success"
+        }
+      ],
+      "expected_inapplicable": [],
+      "reason": "Every native job required/executed."
+    }
+  ],
+  "source_continuity": {
+    "changed_paths": [
+      "ARGDIGEST_GUIDE.md",
+      "MOLSYSSUITE_GUIDE.md",
+      "SMONITOR_GUIDE.md"
+    ],
+    "all_nine_reviewed_input_hashes_match": true,
+    "canonical_guide_matches": true,
+    "executable_packaging_workflow_test_inputs": "unchanged across the full original-source/current-source diff"
+  },
+  "disposition": {
+    "adoption": "adopted",
+    "ci_recipe": "ready",
+    "publication_access": "unknown"
+  },
+  "basis": "Existing devguide/python_distribution_policy.md#member-review permits adoption before a first new public release with ready controls and truthful access/installation scope; no policy or gate is relaxed.",
+  "publication_owner": "uibcdf/lindelint#14",
+  "remaining_release_evidence": [
+    "review and commit real release plan/version/build",
+    "execute exact-candidate source gates for that release",
+    "confirm authorized publication access",
+    "build/stage one original noarch artifact",
+    "qualify original file in all eight Linux/macOS arm64 Python 3.11-3.14 cells with all four mandatory steps",
+    "promote same bytes and independently verify public poststate/clean installation",
+    "complete Python admission before updating support badge"
+  ],
+  "limits": [
+    "No current noarch artifact or clean-public installation qualified. Historical 0.2.0 files are not current Python 3.14 admission.",
+    "No candidate/version/build/upload/promotion/retag, scientific rerun or automatic provider rollout.",
+    "Seven existing qualified-workspace pip findings retained under uibcdf/molsyssuite#82."
+  ],
+  "owner_record": "devguide/archive/noarch_distribution_adoption.md"
+}

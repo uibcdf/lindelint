@@ -7,9 +7,10 @@ original analysis.
 
 <!-- generated: devguide_index -->
 
-### Resolved (2)
+### Resolved (3)
 
 - [`adopt_shared_reporting_lifecycle.md`](adopt_shared_reporting_lifecycle.md) — [#11](https://github.com/uibcdf/lindelint/issues/11) — Adopt the shared issue-backed reporting lifecycle in LinDelInt. *(resolved, inspected)*
 - [`installed_wheel_omits_private_package.md`](../solved_bugs/installed_wheel_omits_private_package.md) — [#6](https://github.com/uibcdf/lindelint/issues/6) — Include private package in installed Lindelint wheel. *(resolved, reproduced)*
+- [`noarch_distribution_adoption.md`](noarch_distribution_adoption.md) — [#13](https://github.com/uibcdf/lindelint/issues/13) — Adopt the distribution policy and a guarded single-file noarch publication route. *(resolved, measured)*
 
 <!-- /generated -->
