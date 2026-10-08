@@ -52,7 +52,8 @@ clear the new four-minor recovery debt.
 
 Interpreter and ecosystem contract only. Scientific numerical defects remain
 with the component team and must not be suppressed or repaired through this
-governance change. Public package delivery remains under uibcdf/lindelint#13.
+governance change. Governance adoption is completed in uibcdf/lindelint#13;
+this issue owns the next public noarch delivery and Python admission.
 
 ## Acceptance criteria
 
@@ -120,3 +121,22 @@ its existing measured 3.13 lane. A configured development environment is
 not fresh installed-artifact or public-channel qualification. Scientific
 failures and remaining distribution gates remain owned by their existing issues.
 
+
+
+## Current public-delivery ownership — 2026-10-08
+
+Distribution governance #13 is resolved before the next public release under
+the existing common Member review contract. Ready source/recipe controls and
+unknown publication access are separate from actual delivery and admission.
+The historical #13 delivery references above are superseded by this issue's
+explicit ownership; original source/policy measurements keep their dated scope.
+
+This issue remains open for the real reviewed release plan/version/build,
+authorized access, all exact-candidate source gates, one immutable staged file,
+all eight Linux/macOS arm64 Python 3.11–3.14 installed cells/four required steps,
+same-byte promotion and independently verified public clean installation before
+central admission/support claims. Existing public historical files are not
+today's noarch/Python 3.14 qualification. The example selects no release.
+Optional installed-root provider adoption remains reviewed candidate work;
+current pins, scientific selection and badge stay unchanged. No build, dispatch
+of scientific suites, upload, promotion, retag or new package is performed.
